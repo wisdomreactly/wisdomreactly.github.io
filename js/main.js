@@ -334,7 +334,9 @@ var textAnimated = document.querySelector(".textAnimated")
 var text = ""
 
 var textArr = [
-  "WISDOM REACTLY"
+  "WISDOM"
+  <br/>
+  "REACTLY"
 ]
 
 var currentTextIndex = -1

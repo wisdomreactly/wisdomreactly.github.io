@@ -334,8 +334,7 @@ var textAnimated = document.querySelector(".textAnimated")
 var text = ""
 
 var textArr = [
-  "WISDOM"
-  <br/>
+  "WISDOM",
   "REACTLY"
 ]
 

@@ -1531,3 +1531,10 @@ ccontact section
   padding-top: 0 15px;
 }
 
+#datetime {
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  text-align: center;
+  padding-top: 10px;
+}

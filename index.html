@@ -168,7 +168,8 @@
               Celebrating the artistic and cultural heritage that has existed since ancient times, makes our really like challenges & learning new things in the rapid development of technology.
               <br />
               <br />
-              <span id="datetime"></span>
+              <span id="date"></span>
+              <span id="time"></span>
             </p>
             <div id="datetime"></div>
             <a href="#contact" class="link-item btn-1 outer-shadow hover-in-shadow">CONTACT</a>
@@ -731,28 +732,37 @@ function sendEmail() {
 }
 
 function updateDateTime() {
-  const dateTimeElement = document.getElementById("datetime");
-
-  // Ambil tanggal dan waktu saat ini
+  const dateElement = document.getElementById('date');
+  const timeElement = document.getElementById('time');
   const currentDate = new Date();
-
-  // Format tanggal dan waktu (misalnya: 10 November 2024 - 14:30:00)
-  const formattedDateTime = currentDate.toLocaleString('id-ID', {
-    weekday: 'long',  // Hari dalam seminggu
-    year: 'numeric',  // Tahun
-    month: 'long',    // Bulan dalam kata (contoh: November)
-    day: 'numeric',   // Tanggal
-    hour: '2-digit',  // Jam
-    minute: '2-digit', // Menit
-    second: '2-digit', // Detik
+  
+  // Format tanggal dalam bahasa Inggris (Amerika Serikat)
+  const formattedDate = currentDate.toLocaleString('en-US', {
+    weekday: 'long',   // Nama hari (e.g., Monday)
+    year: 'numeric',   // Tahun (e.g., 2024)
+    month: 'long',     // Nama bulan (e.g., March)
+    day: 'numeric',    // Tanggal (e.g., 7)
   });
 
-  // Menampilkan waktu dan tanggal pada elemen dengan id "datetime"
-  dateTimeElement.textContent = `${formattedDateTime}`;
+  // Format waktu dalam bahasa Inggris (Amerika Serikat)
+  const formattedTime = currentDate.toLocaleString('en-US', {
+    hour: '2-digit',   // Jam (e.g., 03)
+    minute: '2-digit', // Menit (e.g., 45)
+    second: '2-digit', // Detik (e.g., 09)
+    hour12: true       // Menampilkan waktu dalam format 12 jam (AM/PM)
+  });
+
+  // Tampilkan tanggal
+  dateElement.textContent = formattedDate;
+  // Tampilkan waktu
+  timeElement.textContent = formattedTime;
 }
 
-// Memperbarui waktu setiap detik
+// Update setiap detik
 setInterval(updateDateTime, 1000);
+
+// Panggil fungsi sekali untuk menampilkan waktu saat pertama kali halaman dimuat
+updateDateTime();
 
 </script>
     <!-- contact section end -->

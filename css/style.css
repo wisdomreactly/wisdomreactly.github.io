@@ -295,6 +295,14 @@ img {
   color: var(--skin-color);
 }
 
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
 .section.hide {
   display: none;
 }

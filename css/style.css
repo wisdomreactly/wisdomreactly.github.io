@@ -1533,8 +1533,7 @@ ccontact section
 
 #datetime {
   font-size: 16px;
-  font-family: Arial, sans-serif;
-  color: #333;
-  text-align: center;
-  padding-top: 10px;
+  color: var(--text-black-600);
+  line-height: 26px;
+  margin-bottom: 15px;
 }

@@ -11,13 +11,11 @@
     navMenu.classList.add("open");
     bodyScrollingToggle();
   }
-
   function hideNavMenu() {
     navMenu.classList.remove("open");
     fadeOutEffect();
     bodyScrollingToggle();
   }
-
   function fadeOutEffect() {
     document.querySelector(".fade-out-effect").classList.add("active");
     setTimeout(() => {
@@ -28,43 +26,48 @@
   // attach an event to document
   document.addEventListener("click", (event) => {
     if (event.target.classList.contains("link-item")) {
+      /* make sure event.target.hash has a value before overridding default behavior */
       if (event.target.hash !== "") {
+        // prevent default anchor click behavior
         event.preventDefault();
         const hash = event.target.hash;
-        
-        // Deactivate all sections
-        document.querySelectorAll(".section").forEach(section => {
-          section.classList.remove("active");
-          section.classList.add("hide");
-        });
-        
-        // Activate new section based on the hash
-        const activeSection = document.querySelector(hash);
-        if (activeSection) {
-          activeSection.classList.add("active");
-          activeSection.classList.remove("hide");
+        // deactivate existing active 'section'
+        document.querySelector(".section.active").classList.add("hide");
+        document.querySelector(".section.active").classList.remove("active");
+        // activate new 'section'
+        document.querySelector(hash).classList.add("active");
+        document.querySelector(hash).classList.remove("hide");
+        /* deactivate existing active navigation menu 'link-item' */
+        navMenu
+          .querySelector(".active")
+          .classList.add("outer-shadow", "hover-in-shadow");
+        navMenu
+          .querySelector(".active")
+          .classList.remove("active", "inner-shadow");
+        /* if clicked 'link-iem is contained within the navigation menu' */
+        if (navMenu.classList.contains("open")) {
+          // activate new navogation menu 'link-item'
+          event.target.classList.add("active", "inner-shadow");
+          event.target.classList.remove("outer-shadow", "hover-in-shadow");
+          // hide navigation menu
+          hideNavMenu();
+        } else {
+          let navItems = navMenu.querySelectorAll(".link-item");
+          navItems.forEach((item) => {
+            if (hash === item.hash) {
+              // activate new navogation menu 'link-item'
+              item.classList.add("active", "inner-shadow");
+              item.classList.remove("outer-shadow", "hover-in-shadow");
+            }
+          });
+          fadeOutEffect();
         }
-
-        // Update the URL hash
+        // add hash (#) to url
         window.location.hash = hash;
-
-        // Activate the current menu item
-        navMenu.querySelector(".active").classList.add("outer-shadow", "hover-in-shadow");
-        navMenu.querySelector(".active").classList.remove("active", "inner-shadow");
-        event.target.classList.add("active", "inner-shadow");
-        event.target.classList.remove("outer-shadow", "hover-in-shadow");
-
-        // Hide navigation menu
-        hideNavMenu();
       }
     }
   });
-
 })();
-
-function bodyScrollingToggle() {
-  document.body.classList.toggle("hidden-scrolling");
-}
 
 /*-------------------- about section tabs ----------------------*/
 (() => {

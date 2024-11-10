@@ -168,8 +168,8 @@
               Celebrating the artistic and cultural heritage that has existed since ancient times, makes our really like challenges & learning new things in the rapid development of technology.
               <br />
               <br />
-              Indonesia, 14 Januari 2020.
             </p>
+            <div id="datetime"></div>
             <a href="#contact" class="link-item btn-1 outer-shadow hover-in-shadow">CONTACT</a>
             <a href="#store" class="link-item btn-1 outer-shadow hover-in-shadow">STORE</a>
           </div>
@@ -728,6 +728,31 @@ function sendEmail() {
     // Mengarahkan pengguna ke aplikasi email
     window.location.href = mailtoLink;
 }
+
+function updateDateTime() {
+  const dateTimeElement = document.getElementById("datetime");
+
+  // Ambil tanggal dan waktu saat ini
+  const currentDate = new Date();
+
+  // Format tanggal dan waktu (misalnya: 10 November 2024 - 14:30:00)
+  const formattedDateTime = currentDate.toLocaleString('id-ID', {
+    weekday: 'long',  // Hari dalam seminggu
+    year: 'numeric',  // Tahun
+    month: 'long',    // Bulan dalam kata (contoh: November)
+    day: 'numeric',   // Tanggal
+    hour: '2-digit',  // Jam
+    minute: '2-digit', // Menit
+    second: '2-digit', // Detik
+  });
+
+  // Menampilkan waktu dan tanggal pada elemen dengan id "datetime"
+  dateTimeElement.textContent = `Waktu Sekarang: ${formattedDateTime}`;
+}
+
+// Memperbarui waktu setiap detik
+setInterval(updateDateTime, 1000);
+
 </script>
     <!-- contact section end -->
 
